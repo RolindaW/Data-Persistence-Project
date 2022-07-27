@@ -23,7 +23,7 @@ public class MenuManager : MonoBehaviour
         string name = ConfigurationManager.Instance.Name;
         int score = ConfigurationManager.Instance.Score;
 
-        if (IsValidName(name))
+        if (ConfigurationManager.Instance.IsValidName(name))
         {
             bestScoreText.text = String.Format("Best Score: {0} - {1}", name, score);
             nameInput.text = name;
@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         string name = nameInput.text;
-        if (IsValidName(name))
+        if (ConfigurationManager.Instance.IsValidName(name))
         {
             ConfigurationManager.Instance.ActiveName = name;
             SceneManager.LoadScene(1);
@@ -51,11 +51,6 @@ public class MenuManager : MonoBehaviour
         #else
             Application.Quit;
         #endif
-    }
-
-    private bool IsValidName(string name)
-    {
-        return !String.IsNullOrEmpty(name) && !String.IsNullOrWhiteSpace(name);
     }
 
     private IEnumerator DisplayFooterMessageText()

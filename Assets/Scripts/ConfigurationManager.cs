@@ -9,10 +9,10 @@ public class ConfigurationManager : MonoBehaviour
     private const string FILENAME = "savefile.json";
 
     public static ConfigurationManager Instance { get; private set; }
-    public string Name { get; private set; }
-    public int Score { get; private set; }
     
     public string ActiveName;
+    public string Name;
+    public int Score;
 
     private void Awake()
     {
@@ -58,6 +58,11 @@ public class ConfigurationManager : MonoBehaviour
             Name = data.name;
             Score = data.score;
         }
+    }
+    
+    public bool IsValidName(string name)
+    {
+        return !String.IsNullOrEmpty(name) && !String.IsNullOrWhiteSpace(name);
     }
 
     private string GetPersistantDataPath()
